@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Covid19  Dashboard',
       theme: ThemeData(),
-      darkTheme: ThemeData.dark(),
       home: MyHomePage(),
     );
   }
@@ -31,7 +30,6 @@ class _MyHomePageState extends State<MyHomePage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   List<Note> _countries = List<Note>();
-  List<Note> _search = List<Note>();
   List<String> _labels = List<String>();
   List<int> _global = List<int>();
 
@@ -89,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+
     fetchAll().then((value) {
       setState(() {
         _global.add(value[0].cases);
@@ -117,6 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SearchBar<Note>(
+            hintText: "Search Country",
+            placeHolder: _countryListView(),
             loader: Text("loading..."),
             onSearch: search,
             onItemFound: (Note note, int index) {
@@ -231,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          _countries[index].country,
+                          _countries[index].country + '\n',
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold),
                         ),
@@ -279,9 +280,8 @@ class _MyHomePageState extends State<MyHomePage> {
   _screen(int index) {
     if (index == 0)
       return _globalListView();
-    else if (index == 1) return _countryListView();
+    else if (index == 1) return _searchListView();
 
-    return _searchListView();
   }
 
   static List<Widget> _widgetOptions = <Widget>[
@@ -299,7 +299,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Covid19 Pandemic Dashboard'),
+        title: const Text('Covid19 Pandemic'),
         backgroundColor: Colors.green,
       ),
       body: Center(
@@ -314,10 +314,6 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
             title: Text('Countries'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Search'),
           ),
         ],
         currentIndex: _selectedIndex,
