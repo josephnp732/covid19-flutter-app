@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<List<Note>> search(String search) async {
-    await Future.delayed(Duration(seconds: 2));
+    //await Future.delayed(Duration(seconds: 2));
 
     var url = 'https://corona.lmao.ninja/countries/' + search;
     var response = await http.get(url);
