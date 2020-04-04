@@ -1,4 +1,4 @@
-# covid19_app
+# Covid19 Flutter Mobile Application
 
 Covid-19 Pandemic Dashbaord
 
