@@ -8,6 +8,12 @@ import 'package:covid19_app/global.dart';
 
 void main() => runApp(MyApp());
 
+// Add AWS Load Balancer URL here
+var awsURl = 'http://ac814e9142a8a4552836cba5c95834ff-212809860.us-east-1.elb.amazonaws.com';
+
+// Change port number here
+var port = '3000';
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -34,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<int> _global = List<int>();
 
   Future<List<Note>> fetchCountries() async {
-    var url = 'https://corona.lmao.ninja/countries';
+    var url = awsURl + ':' + port + '/countries';
     var response = await http.get(url);
 
     var notes = List<Note>();
@@ -51,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<List<Note>> search(String search) async {
     //await Future.delayed(Duration(seconds: 2));
 
-    var url = 'https://corona.lmao.ninja/countries/' + search;
+    var url = awsURl + ':' + port + '/countries/' + search;
     var response = await http.get(url);
 
     List<Note> _result = new List<Note>();
@@ -64,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<List<Global>> fetchAll() async {
-    var url = 'https://corona.lmao.ninja/all';
+    var url = awsURl + ':' + port + '/all';
     var response = await http.get(url);
 
     var all = List<Global>();
@@ -159,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         new Container(
                           child: Image.network(
                             note.image["flag"],
-                            scale: 6,
+                            scale: 4,
                           ),
                           alignment: Alignment.topCenter,
                         ),
@@ -260,7 +266,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   new Container(
                     child: Image.network(
                       _countries[index].image["flag"],
-                      scale: 5,
+                      scale: 4,
                     ),
                     alignment: Alignment.topCenter,
                   ),
