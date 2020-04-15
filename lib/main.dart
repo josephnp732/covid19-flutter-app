@@ -9,16 +9,13 @@ import 'package:covid19_app/global.dart';
 void main() => runApp(MyApp());
 
 // Add AWS Load Balancer URL here
-var awsURl = 'http://ac814e9142a8a4552836cba5c95834ff-212809860.us-east-1.elb.amazonaws.com';
-
-// Change port number here
-var port = '3000';
+var awsURl = 'http://a657c150480c74a08a74e5d7acfebc71-696643302.us-east-1.elb.amazonaws.com';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Covid19  Dashboard',
+      title: 'Covid19 Dashboard',
       theme: ThemeData(),
       home: MyHomePage(),
     );
@@ -40,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<int> _global = List<int>();
 
   Future<List<Note>> fetchCountries() async {
-    var url = awsURl + ':' + port + '/countries';
+    var url = awsURl + '/countries';
     var response = await http.get(url);
 
     var notes = List<Note>();
@@ -57,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<List<Note>> search(String search) async {
     //await Future.delayed(Duration(seconds: 2));
 
-    var url = awsURl + ':' + port + '/countries/' + search;
+    var url = awsURl + '/countries/' + search;
     var response = await http.get(url);
 
     List<Note> _result = new List<Note>();
@@ -70,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<List<Global>> fetchAll() async {
-    var url = awsURl + ':' + port + '/all';
+    var url = awsURl + '/all';
     var response = await http.get(url);
 
     var all = List<Global>();
