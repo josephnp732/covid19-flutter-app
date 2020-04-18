@@ -9,7 +9,7 @@ import 'package:covid19_app/global.dart';
 void main() => runApp(MyApp());
 
 // Add AWS Load Balancer URL here
-var awsURl = 'http://a657c150480c74a08a74e5d7acfebc71-696643302.us-east-1.elb.amazonaws.com';
+var awsURl = 'http://aed7a44a250ea4dcf81cf79b2ec8fbc1-1723373789.us-east-1.elb.amazonaws.com';
 
 class MyApp extends StatelessWidget {
   @override
@@ -162,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         new Container(
                           child: Image.network(
                             note.image["flag"],
-                            scale: 4,
+                            scale: 6,
                           ),
                           alignment: Alignment.topCenter,
                         ),
@@ -263,7 +263,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   new Container(
                     child: Image.network(
                       _countries[index].image["flag"],
-                      scale: 4,
+                      scale: 6,
                     ),
                     alignment: Alignment.topCenter,
                   ),
